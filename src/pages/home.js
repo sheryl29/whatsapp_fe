@@ -1,5 +1,17 @@
+import { Sidebar } from "../components/sideBar"
+
 export default function Home() {
   return (
-    <div>Home</div>
+    <div className="h-screen dark:bg-dark_bg_1 flex items-center justify-center overflow-hidden">
+      {/* container */}
+      
+      <div className="container h-screen flex py-[19px]">
+
+        <Sidebar />
+
+      </div>
+
+
+    </div>
   )
 }
