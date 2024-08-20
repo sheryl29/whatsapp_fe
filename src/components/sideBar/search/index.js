@@ -1,3 +1,4 @@
 import Search from "./Search";
+import SearchResult from "./SearchResult";
 
-export {Search};
+export {Search, SearchResult};

@@ -3,10 +3,12 @@ import { SidebarHeader } from "./header";
 import { Notification } from "./notifications";
 import { Search } from "./search";
 import { Conversations } from "./conversations";
+import { SearchResult } from "./search";
 
 export default function Sidebar() {
 
   const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults);
 
   return (
     <div className="flex0030 max-w-[30%] h-full select-none">
@@ -22,8 +24,19 @@ export default function Sidebar() {
           setSearchResults={setSearchResults}
         />
 
-        {/* conversations */}
-        <Conversations />
+        {searchResults.length > 0 ?(
+          <>
+            {/*search result*/}
+            <SearchResult searchResults={searchResults}/>
+          </>
+        ) : (
+          <>
+            {/* conversations */}
+            <Conversations />
+          </>
+        )}
+
+        
     </div>
   )
 }
