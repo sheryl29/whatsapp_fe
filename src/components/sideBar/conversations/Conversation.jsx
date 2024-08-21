@@ -43,7 +43,11 @@ export default function Conversation({convo}) {
                     {/* conversation message */}
                     <div className="flex items-center gap-x-1 dark:text-dark_text_2">
                         <div className="flex-1 items-center gap-x-1 dark:text-dark_text_2">
-                            <p>{convo.latestMessage?.message}</p>
+                            <p>
+                                {convo.latestMessage?.message.length > 25
+                                ? `${convo.latestMessage?.message.substring(0,25)}...`
+                                : convo.latestMessage?.message} 
+                            </p>
                         </div>
                     </div>
                 </div>
