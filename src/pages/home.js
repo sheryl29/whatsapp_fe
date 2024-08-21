@@ -9,6 +9,8 @@ export default function Home() {
   const { user } = useSelector((state) => state.user);
   const { activeConversation } = useSelector((state) => state.chat);
   
+  console.log("activeConversation", activeConversation);
+
   useEffect(() => {
     if (user?.token) {
       dispatch(getConversations(user.token));
