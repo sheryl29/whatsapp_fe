@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChatHeader from "./header/ChatHeader";
 import ChatMessages from "./messages/ChatMessages";
+import { ChatActions } from "./actions";
 import { getConversationMessages } from "../../features/chatSlice";
 
 export default function ChatContainer() {
@@ -20,7 +21,8 @@ export default function ChatContainer() {
   }, [activeConversation]);
 
   return (
-    <div className="relative w-full h-full border-l dark:border-l-dark_border_2 select-none overflow-hidden ">
+    
+    <div className="relative w-full h-full border-l dark:border-l-dark_border_2 select-none overflow-hidden">
         {/* container */}
         <div>
             {/* chat message */}
@@ -28,6 +30,9 @@ export default function ChatContainer() {
 
             {/* chat message */}
             <ChatMessages />
+
+            {/* chat actions */}
+            <ChatActions />
         </div>
     </div>
   )
