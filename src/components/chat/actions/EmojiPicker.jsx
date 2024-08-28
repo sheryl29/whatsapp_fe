@@ -6,11 +6,11 @@ export default function EmojiPickerApp({
   textRef,
   message,
   setMessage,
-  //showPicker,
-  //setShowPicker,
-  //setShowAttachments,
+  showPicker,
+  setShowPicker,
+  setShowAttachments,
 }) {
-  const [showPicker, setShowPicker] = useState(false);
+
   const [cursorPosition, setCursorPosition] = useState();
   useEffect(() => {
     textRef.current.selectionEnd = cursorPosition;
@@ -31,7 +31,7 @@ export default function EmojiPickerApp({
         className="btn"
         type="button"
         onClick={() => {
-          //setShowAttachments(false);
+          setShowAttachments(false);
           setShowPicker((prev) => !prev);
         }}
       >

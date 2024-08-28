@@ -9,6 +9,8 @@ import { sendMessage } from "../../../features/chatSlice.js";
 
 export default function ChatActions() {
     const dispatch = useDispatch();
+    const [showPicker, setShowPicker] = useState(false);
+    const [showAttachments,setShowAttachments] = useState(false);
     const { activeConversation, status } = useSelector((state) => state.chat);
     const { user } = useSelector((state) => state.user);
     const { token } = user;
@@ -36,8 +38,19 @@ export default function ChatActions() {
         <div className="w-full flex items-center gap-x-2">
             {/*emojis and attachment*/}
             <ul className="flex gap-x-2">
-                <EmojiPickerApp message={message} setMessage={setMessage} textRef={textRef}/>
-                <Attachments />
+                <EmojiPickerApp 
+                    message={message} 
+                    setMessage={setMessage} 
+                    textRef={textRef}
+                    showPicker={showPicker}
+                    setShowPicker={setShowPicker}
+                    setShowAttachments={setShowAttachments}
+                    />
+                <Attachments 
+                    showAttachments={showAttachments}
+                    setShowAttachments={setShowAttachments}
+                    setShowPicker={setShowPicker}
+                />
             </ul>
             {/* input */}
             <Input message={message} setMessage={setMessage} textRef={textRef}/>
