@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import SendIcon from "../../../svg/Send.js";
-import EmojiPicker from "./EmojiPicker";
+import EmojiPickerApp from "./EmojiPicker";
 import Input from "./Input.jsx";
 import Attachments from "./attachments/Attachments.jsx";
 import { ClipLoader } from "react-spinners";
@@ -12,6 +12,7 @@ export default function ChatActions() {
     const { activeConversation, status } = useSelector((state) => state.chat);
     const { user } = useSelector((state) => state.user);
     const { token } = user;
+    const textRef = useRef();
     const [message, setMessage] = useState("");
     const values = {
         message,
@@ -35,11 +36,11 @@ export default function ChatActions() {
         <div className="w-full flex items-center gap-x-2">
             {/*emojis and attachment*/}
             <ul className="flex gap-x-2">
-                <EmojiPicker />
+                <EmojiPickerApp message={message} setMessage={setMessage} textRef={textRef}/>
                 <Attachments />
             </ul>
             {/* input */}
-            <Input message={message} setMessage={setMessage}/>
+            <Input message={message} setMessage={setMessage} textRef={textRef}/>
 
             {/* send botton */}
             <button type="submit" className="btn">
