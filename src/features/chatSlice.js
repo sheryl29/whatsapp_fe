@@ -11,6 +11,7 @@ const initialState = {
   activeConversation: {},
   messages: [],
   notifications: [],
+  files: [],
 };
 
 //functions
@@ -103,7 +104,10 @@ export const chatSlice = createSlice({
     },
     updateMesssages: (state, action) => {
       state.messages = [...state.messages, action.payload];
-    }
+    },
+    addFiles: (state, action) => {
+      state.files = [...state.files, action.payload];
+    },
   },
 
   updateMessagesAndConversations: (state, action) => {
@@ -183,6 +187,6 @@ export const chatSlice = createSlice({
       });
   },
 });
-export const { setActiveConversation,updateMesssages, updateMessagesAndConversations } = chatSlice.actions;
+export const { setActiveConversation,updateMesssages, updateMessagesAndConversations, addFiles } = chatSlice.actions;
 
 export default chatSlice.reducer;
