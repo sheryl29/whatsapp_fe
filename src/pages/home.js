@@ -1,17 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Sidebar } from "../components/sideBar";
 import { getConversations } from "../features/chatSlice";
 import { ChatContainer, WhatsappHome } from "../components/chat";
 import { updateMessagesAndConversations } from "../features/chatSlice";
 import SocketContext from "../context/SocketContext";
+import Call from "../components/chat/call/Call";
+
+const callData = {
+  receivingCall: false,
+  callEnded: false,
+};
 
 function Home({socket}) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { activeConversation } = useSelector((state) => state.chat);
+  //typing
   const [typing, setTyping] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
+
+  //call
+  const [call, setCall] = useState(callData);
+  const {receivingCall, callEnded} = call;
+  const [callAccepted, setCallAccepted] = useState(false);
 
   //join user into the socket
   useEffect(() => {
@@ -41,15 +53,22 @@ function Home({socket}) {
   }, []);
 
   return (
-    <div className="h-screen dark:bg-dark_bg_1 flex items-center justify-center overflow-hidden">
-      {/*container*/}
-      <div className="container h-screen flex py-[19px]">
-        {/*Sidebar*/}
-        <Sidebar onlineUsers={onlineUsers} typing={typing}/>
-        { activeConversation._id ? <ChatContainer onlineUsers={onlineUsers} typing={typing} /> : <WhatsappHome /> }
-        
+    <>
+      <div className="h-screen dark:bg-dark_bg_1 flex items-center justify-center overflow-hidden">
+        {/*container*/}
+        <div className="container h-screen flex py-[19px]">
+          {/*Sidebar*/}
+          <Sidebar onlineUsers={onlineUsers} typing={typing}/>
+          { activeConversation._id ? <ChatContainer onlineUsers={onlineUsers} typing={typing} /> : <WhatsappHome /> }
+        </div>
       </div>
-    </div>
+      {/* call */}
+      <Call
+        call={call}
+        setCall={setCall}
+        callAccepted={callAccepted}
+      />
+    </>
   );
 }
 
