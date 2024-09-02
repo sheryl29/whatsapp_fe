@@ -7,7 +7,7 @@ import { getConversationMessages } from "../../features/chatSlice";
 import { checkOnlineStatus, getConversationId } from "../../utils/chat";
 import FilesPreview from "./preview/FilesPreview";
 
-export default function ChatContainer({onlineUsers, typing}) {
+export default function ChatContainer({onlineUsers, typing, callUser}) {
   const dispatch = useDispatch();
   const { activeConversation, files } = useSelector((state) => state.chat);
   const { user } = useSelector((state) => state.user);
@@ -28,7 +28,7 @@ export default function ChatContainer({onlineUsers, typing}) {
         {/* container */}
         <div>
             {/* chat message */}
-            <ChatHeader online={ checkOnlineStatus(onlineUsers, user, activeConversation.users) }/>
+            <ChatHeader online={ checkOnlineStatus(onlineUsers, user, activeConversation.users) } callUser={callUser}/>
           {
             files.length > 0 ? (
               <FilesPreview /> 

@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import { io } from "socket.io-client";
 import SocketContext from "./context/SocketContext";
+//import process from 'process';
+
 //Pages
 import Home from "./pages/home";
 import Login from "./pages/login";
