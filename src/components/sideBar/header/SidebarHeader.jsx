@@ -8,6 +8,7 @@ export default function SidebarHeader() {
 
   const {user} = useSelector((state)=>state.user);
   const [showMenu, setShowMenu]=useState(false);
+  const [showCreateGroup, setShowCreateGroup]=useState(false);
 
   return (
    <>
@@ -45,7 +46,7 @@ export default function SidebarHeader() {
               <DotsIcon className="dark:fill-dark_svg_1" />
             </button>
 
-            { showMenu ? <Menu /> : null}
+            { showMenu ? <Menu setShowCreateGroup={setShowCreateGroup}/> : null}
 
           </li>
           
@@ -54,7 +55,8 @@ export default function SidebarHeader() {
     </div>
 
     {/* create group */}
-    <CreateGroup />
+    {showCreateGroup && <CreateGroup setShowCreateGroup={setShowCreateGroup}/>}
+    
    </>
     
   )

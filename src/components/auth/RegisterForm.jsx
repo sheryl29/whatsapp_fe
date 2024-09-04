@@ -22,26 +22,26 @@ export default function RegisterForm() {
     register,
     handleSubmit,
 //    watch,
-    formState: { errors },
+    formState: { errors }, //managing errors using formState
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
 
   const onSubmit = async (data) => {
-    dispatch(changeStatus("loading"));
-    if (picture) {
+    dispatch(changeStatus("loading")); //change status
+    if (picture) { //if there is a picture
       //upload to cloudinary and then register user
       await uploadImage().then(async (response) => {
         let res = await dispatch(
           registerUser({ ...data, picture: response.secure_url })
         );
-        if (res?.payload?.user) {
+        if (res?.payload?.user) { //check if user exist then navigate to home page
           navigate("/");
         }
       });
-    } else {
-      let res = await dispatch(registerUser({ ...data, picture: "" }));
-      if (res?.payload?.user) {
+    } else { //else no picture
+      let res = await dispatch(registerUser({ ...data, picture: "" })); //use empty string for the picture
+      if (res?.payload?.user) { //check if user exist then navigate to home page
         navigate("/");
       }
     }
@@ -51,7 +51,7 @@ export default function RegisterForm() {
     let formData = new FormData();
     formData.append("upload_preset", cloud_secret);
     formData.append("file", picture);
-    const { data } = await axios.post(
+    const { data } = await axios.post( //send post request to the cloudinary to upload image
       `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
       formData
     );

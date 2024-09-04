@@ -12,9 +12,11 @@ export default function EmojiPickerApp({
 }) {
 
   const [cursorPosition, setCursorPosition] = useState();
-  useEffect(() => {
+  useEffect(() => { //whenever cursorPosition changes
     textRef.current.selectionEnd = cursorPosition;
   }, [cursorPosition]);
+  
+  //updates the message text and cursor position based on the selected emoji
   const handleEmoji = (emojiData, e) => {
     const { emoji } = emojiData;
     const ref = textRef.current;

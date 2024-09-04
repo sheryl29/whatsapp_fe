@@ -35,10 +35,12 @@ function HandleAndSend({ activeIndex, setActiveIndex, message, socket }) {
     socket.emit("send message", newMsg.payload);
     setLoading(false);
   };
+
   //Handle remove file
   const handleRemoveFile = (index) => {
     dispatch(removeFileFromFiles(index));
   };
+
   return (
     <div className="w-[97%] flex items-center justify-between mt-2 border-t dark:border-dark_border_2">
       {/*Empty*/}
@@ -85,7 +87,7 @@ function HandleAndSend({ activeIndex, setActiveIndex, message, socket }) {
         className="bg-green_1 w-16 h-16 mt-2 rounded-full flex items-center justify-center cursor-pointer"
         onClick={(e) => sendMessageHandler(e)}
       >
-        {loading ? (
+        {loading ? ( //if loading is true then cliploader, otherwise send icon
           <ClipLoader color="#E9EDEF" size={25} />
         ) : (
           <SendIcon className="fill-white" />

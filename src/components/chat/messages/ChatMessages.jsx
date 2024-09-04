@@ -8,9 +8,11 @@ export default function ChatMessages({ typing }) {
   const { messages, activeConversation } = useSelector((state) => state.chat);
   const { user } = useSelector((state) => state.user);
   const endRef = useRef();
+  //chat view always scrolls to the bottom 
   useEffect(() => {
     scrollToBottom();
   }, [messages, typing]);
+  
   const scrollToBottom = () => {
     endRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -27,6 +29,7 @@ export default function ChatMessages({ typing }) {
           messages.map((message) => (
             <>
               {/*Message files */}
+              {/* if the message has any attachted files */}
               {message.files.length > 0
                 ? message.files.map((file) => (
                     <FileMessage

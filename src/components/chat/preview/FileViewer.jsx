@@ -6,19 +6,20 @@ export default function FileViewer({ activeIndex }) {
     <div className="w-full max-w-[60%]">
       {/*Container */}
       <div className="flex justify-center items-center">
-        {files[activeIndex].type === "IMAGE" ? (
+        {files[activeIndex].type === "IMAGE" ? ( //if the file is image
           <img
             src={files[activeIndex].fileData}
             alt=""
             className="max-w-[80%] object-contain hview"
           />
-        ) : files[activeIndex].type === "VIDEO" ? (
+        ) : files[activeIndex].type === "VIDEO" ? ( //if the file is video
           <video
             src={files[activeIndex].fileData}
             controls
             className="max-w-[80%] object-contain hview"
           ></video>
         ) : (
+          //if neither image or video
           <div className="min-w-full hview flex flex-col items-center justify-center">
             {/* File Icon Image */}
             <img

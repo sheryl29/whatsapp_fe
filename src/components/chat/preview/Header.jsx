@@ -5,6 +5,8 @@ import { clearFiles } from "../../../features/chatSlice";
 export default function Header({ activeIndex }) {
   const dispatch = useDispatch();
   const { files } = useSelector((state) => state.chat);
+
+  //clearing the files
   const clearFilesHandler = () => {
     dispatch(clearFiles());
   };

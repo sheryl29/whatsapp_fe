@@ -29,10 +29,7 @@ export default function Menu({ setShowCreateGroup }) {
             <span>Logout</span>
           </li>
         </ul>
-      </div>
-
-      {/* create group */}
-      
+      </div>    
     </>
   );
 }

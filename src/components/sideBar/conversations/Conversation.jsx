@@ -14,7 +14,7 @@ function Conversation({convo, socket, online, typing}) {
 
     const values={
         receiver_id: getConversationId(user, convo.users),
-        //isGroup: convo.isGroup ? convo._id : false,
+        isGroup: convo.isGroup ? convo._id : false,
         token,
     };
     const openConversation = async()=>{
@@ -40,7 +40,11 @@ function Conversation({convo, socket, online, typing}) {
                     online ? "online" : ""}`}
                 >
                     <img
-                        src={getConversationPicture(user, convo.users)}
+                        src={
+                            convo.isGroup
+                            ? convo.picture
+                            : getConversationPicture(user, convo.users)
+                        }
                         alt="picture"
                         className="w-full h-full object-cover"
                     />
@@ -49,7 +53,9 @@ function Conversation({convo, socket, online, typing}) {
                 <div className="w-full flex flex-col">
                     {/* conversation name */}
                     <h1 className="font-bold flex items-center gap-x-2">
-                        {capitalize(getConversationName(user, convo.users))}
+                        {convo.isGroup
+                        ? convo.name
+                        : capitalize(getConversationName(user, convo.users))}
                     </h1>
                     {/* conversation message */}
                     <div className="flex items-center gap-x-1 dark:text-dark_text_2">
@@ -58,6 +64,7 @@ function Conversation({convo, socket, online, typing}) {
                             typing === convo._id ? (
                                 <p className="text-green_1">Typing...</p>
                             ):(
+                                //if the latestMessage more than 25 then only display 0-25
                                 <p>
                                 {convo.latestMessage?.message.length > 25
                                 ? `${convo.latestMessage?.message.substring(0,25)}...`

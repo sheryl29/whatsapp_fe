@@ -15,7 +15,7 @@ export default function RegisterForm() {
     register,
     handleSubmit,
 //    watch,
-    formState: { errors },
+    formState: { errors }, //managing errors using formState
   } = useForm({
     resolver: yupResolver(signInSchema),
   });
@@ -23,7 +23,7 @@ export default function RegisterForm() {
   const onSubmit = async (values) => {
     let res = await dispatch(loginUser({ ...values }));
     console.log(res);
-    if (res?.payload?.user) {
+    if (res?.payload?.user) { //check if user exist then navigate to home page
       navigate("/");
     }
   };
@@ -54,8 +54,6 @@ export default function RegisterForm() {
             register={register}
             error={errors?.password?.message}
           />
-
-
           
           {/*if we have an error*/}
           {error ? (

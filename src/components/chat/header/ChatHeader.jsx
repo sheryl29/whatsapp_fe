@@ -8,7 +8,7 @@ import VideoCallIcon from "../../../svg/VideoCall";
 import { capitalize } from "../../../utils/string";
 import { useEffect, useRef, useState } from "react";
 import SocketContext from "../../../context/SocketContext";
-//import Peer from "simple-peer";
+
 import {
   getConversationName,
   getConversationPicture,
@@ -43,7 +43,7 @@ function ChatHeader({ online, callUser, socket }) {
                 : capitalize(
                     getConversationName(user, activeConversation.users).split(
                       " "
-                    )[0]
+                    )[0] //split full name bt spaces and take the first part
                   )}
             </h1>
             <span className="text-xs dark:text-dark_svg_2">
@@ -53,14 +53,14 @@ function ChatHeader({ online, callUser, socket }) {
         </div>
         {/*Right*/}
         <ul className="flex items-center gap-x-2.5">
-          {1 == 1 ? (
+          {1 == 1 ? ( //condition always true
             <li onClick={() => callUser()}>
               <button className="btn">
                 <VideoCallIcon />
               </button>
             </li>
           ) : null}
-          {1 == 1 ? (
+          {1 == 1 ? ( //condition always true
             <li>
               <button className="btn">
                 <CallIcon />

@@ -1,4 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit"; //handle promise-based logic
+import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const AUTH_ENDPOINT = `${process.env.REACT_APP_API_ENDPOINT}/auth`;
@@ -43,6 +44,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+//new users
 export const userSlice = createSlice({
   name: "user",
   initialState,

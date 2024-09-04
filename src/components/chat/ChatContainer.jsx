@@ -28,7 +28,13 @@ export default function ChatContainer({onlineUsers, typing, callUser}) {
         {/* container */}
         <div>
             {/* chat message */}
-            <ChatHeader online={ checkOnlineStatus(onlineUsers, user, activeConversation.users) } callUser={callUser}/>
+            <ChatHeader 
+              online={ 
+                activeConversation.isGroup 
+                ? false 
+                : checkOnlineStatus(onlineUsers, user, activeConversation.users)
+                 } 
+                callUser={callUser}/>
           {
             files.length > 0 ? (
               <FilesPreview /> 
