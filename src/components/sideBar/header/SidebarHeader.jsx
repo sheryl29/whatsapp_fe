@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { ChatIcon, CommunityIcon, DotsIcon, StoryIcon } from "../../../svg"
 import { useState } from "react"
 import Menu from "./Menu";
+import { CreateGroup } from "./createGroup";
 
 export default function SidebarHeader() {
 
@@ -9,7 +10,8 @@ export default function SidebarHeader() {
   const [showMenu, setShowMenu]=useState(false);
 
   return (
-    <div className="h-[50px] dark:bg-dark_bg_2 flex items-center p16">
+   <>
+     <div className="h-[50px] dark:bg-dark_bg_2 flex items-center p16">
       {/* container */}
       <div className="w-full flex items-center justify-between">
         {/* user image */}
@@ -50,5 +52,10 @@ export default function SidebarHeader() {
         </ul>
       </div>
     </div>
+
+    {/* create group */}
+    <CreateGroup />
+   </>
+    
   )
 }

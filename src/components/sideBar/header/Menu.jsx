@@ -30,6 +30,9 @@ export default function Menu({ setShowCreateGroup }) {
           </li>
         </ul>
       </div>
+
+      {/* create group */}
+      
     </>
   );
 }
